@@ -6,8 +6,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  //a map to store the data revived from last page
+  Map information = {};
   @override
   Widget build(BuildContext context) {
+    //this gives me the data from last page (the loading page)
+    information = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
         body: SafeArea(
       child: Column(

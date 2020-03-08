@@ -8,8 +8,7 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-
-  String time;
+  
 
   void setTime() async {
     HandleTimeData handleTimeData = HandleTimeData(
@@ -18,12 +17,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
         url: "Asia/Jerusalem");
     await handleTimeData.getTimeData();
 
-
-    //after i got time from api set the string
-    setState(() {
-      time = handleTimeData.time;
-      print("hey hey hey    $time" );
+    //Pass data to the home age with time date, replace the route and not push another route to the stack
+    //the argument part is how you send information between routs
+    Navigator.pushNamed(context, '/Home',arguments: {
+      "locationName": handleTimeData.locationName,
+      "countryFlag": handleTimeData.countryFlag,
+      "time": handleTimeData.time,
     });
+  
   }
 
 
@@ -35,7 +36,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("$time"),
+      body: Text("Loading"),
 
     );
   }

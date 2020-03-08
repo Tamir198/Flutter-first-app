@@ -9,7 +9,7 @@ void main() => runApp(MaterialApp(
   routes:{
       //in flutter this is hwo you navigate screens
       '/': (context) => LoadingScreen(),
-      //'/Home': (context) => Home(),
+      '/Home': (context) => Home(),
       '/Location': (context) => ChooseLocation()
     }
 
