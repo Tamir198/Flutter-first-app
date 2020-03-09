@@ -5,7 +5,14 @@ import 'pages/choose_location_screen.dart';
 
 //MaterialApp root widget to enable me blank screen + working with material design things
 void main() => runApp(MaterialApp(
-    home: Home(),
+  initialRoute: '/',
+  routes:{
+      //in flutter this is hwo you navigate screens
+      '/': (context) => LoadingScreen(),
+      '/Home': (context) => Home(),
+      '/Location': (context) => ChooseLocation()
+    }
+
 ));
 
 class List extends StatefulWidget {
