@@ -1,5 +1,6 @@
 import 'package:http/http.dart';
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class HandleTimeData {
   String locationName;
@@ -26,7 +27,8 @@ class HandleTimeData {
       DateTime currentTime = DateTime.parse(dateTime);
       currentTime = currentTime.add(Duration(hours: int.parse(offset)));
 
-      time = currentTime.toString();
+     // time = currentTime.toString();
+      time = DateFormat.jm().format(currentTime);
 
     } catch(e) {
       time = "Something went wrong getting time";
