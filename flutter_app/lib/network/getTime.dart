@@ -7,6 +7,7 @@ class HandleTimeData {
   String time;
   String countryFlag;
   String url;
+  bool isDayTime;
 
   //this is called named parameters
   HandleTimeData({this.locationName, this.countryFlag, this.url});
@@ -27,7 +28,7 @@ class HandleTimeData {
       DateTime currentTime = DateTime.parse(dateTime);
       currentTime = currentTime.add(Duration(hours: int.parse(offset)));
 
-     // time = currentTime.toString();
+      isDayTime = currentTime.hour > 6 && currentTime.hour < 19 ? true : false;
       time = DateFormat.jm().format(currentTime);
 
     } catch(e) {

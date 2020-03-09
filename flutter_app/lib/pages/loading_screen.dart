@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutterapp/network/getTime.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 
 class LoadingScreen extends StatefulWidget {
@@ -14,7 +16,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
     HandleTimeData handleTimeData = HandleTimeData(
         locationName: 'israel',
         countryFlag: 'image',
-        url: "Asia/Jerusalem");
+        url: "Asia/Jerusalem"
+    );
     await handleTimeData.getTimeData();
 
     //Pass data to the home age with time date, replace the route and not push another route to the stack
@@ -23,6 +26,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       "locationName": handleTimeData.locationName,
       "countryFlag": handleTimeData.countryFlag,
       "time": handleTimeData.time,
+      "isDayTime" : handleTimeData.isDayTime
     });
   
   }
@@ -36,7 +40,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("Loading"),
+      backgroundColor: Colors.black26,
+      body: Center(
+        child: SpinKitFadingCube(
+          color: Colors.white,
+          size: 200.0,
+        ),
+
+      ),
 
     );
   }
