@@ -11,8 +11,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    //this gives me the data from last page (the loading page)
-    information = ModalRoute.of(context).settings.arguments;
+    //this gives me the data from last page (the loading page) and if is not empty
+    //it gt data from choose location screen so I wont rebuild it
+    information = information.isNotEmpty? information : ModalRoute.of(context).settings.arguments;
     print('info $information');
     bool isDay = information['isDayTime'];
     String backgroundImage = isDay ? 'day.jfif' : 'night.jfif';
@@ -47,8 +48,20 @@ class _HomeState extends State<Home> {
             ),
             SizedBox(height: 40.0),
             FlatButton.icon(
-              onPressed: () {
-                Navigator.pushNamed(context, '/Location');
+              onPressed:  () async {
+                //this is async with await because the widget tree is not rebuilding when
+                //returning from the choose location screen (the screen was already on the stack)
+                //so I save the result in variable
+                dynamic result = await Navigator.pushNamed(context, '/Location');
+                setState(() {
+                  //Overriding data on the information with a new map (the map data cam from choose location screen)
+                  information = {
+                    'time': result['time'],
+                    'locationName': result['locationName'],
+                    'countryFlag': result['countryFlag'],
+                    'isDayTime': result['isDayTime']
+                  };
+                });
               },
               icon: Icon(Icons.location_on),
               label: Text("Change location"),
