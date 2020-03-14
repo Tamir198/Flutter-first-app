@@ -23,13 +23,9 @@ class List extends StatefulWidget {
 }
 
 class _ListState extends State<List> {
-
-
+  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-
-    );
+    return Scaffold();
   }
 }

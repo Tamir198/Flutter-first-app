@@ -4,16 +4,11 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 
 class HandleTimeData {
-  String locationName;
-  String time;
-  String countryFlag;
-  String url;
+  String locationName, time, countryFlag, url;
   bool isDayTime;
 
   //this is called named parameters
   HandleTimeData({this.locationName, this.countryFlag, this.url});
-
-
 
   //return void in the future - only when the async function is done
   Future<void> getTimeData() async {
@@ -35,6 +30,5 @@ class HandleTimeData {
     } catch(e) {
       time = "Something went wrong getting time";
     }
-
   }
 }
