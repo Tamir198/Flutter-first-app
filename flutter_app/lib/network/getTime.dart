@@ -1,3 +1,4 @@
+import 'package:flutterapp/Utills/IsDay.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
@@ -28,7 +29,7 @@ class HandleTimeData {
       DateTime currentTime = DateTime.parse(dateTime);
       currentTime = currentTime.add(Duration(hours: int.parse(offset)));
 
-      isDayTime = currentTime.hour > 6 && currentTime.hour < 19 ? true : false;
+      isDayTime = IsDay().isDayTime(currentTime.hour);
       time = DateFormat.jm().format(currentTime);
 
     } catch(e) {
