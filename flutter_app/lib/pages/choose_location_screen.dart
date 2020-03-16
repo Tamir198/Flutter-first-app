@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/network/getTime.dart';
+import 'package:flutterapp/Utills/moke_data.dart';
 
 
 class ChooseLocation extends StatefulWidget {
@@ -9,16 +10,7 @@ class ChooseLocation extends StatefulWidget {
 
 class _ChooseLocationState extends State<ChooseLocation> {
 
-  List<HandleTimeData> locations = [HandleTimeData(url: 'Europe/London', locationName: 'London', countryFlag: 'uk.png'),
-    HandleTimeData(url: 'Europe/Berlin', locationName: 'Athens', countryFlag: 'greece.png'),
-    HandleTimeData(url: 'Africa/Cairo', locationName: 'Cairo', countryFlag: 'egypt.png'),
-    HandleTimeData(url: 'Africa/Nairobi', locationName: 'Nairobi', countryFlag: 'kenya.png'),
-    HandleTimeData(url: 'America/Chicago', locationName: 'Chicago', countryFlag: 'usa.png'),
-    HandleTimeData(url: 'America/New_York', locationName: 'New York', countryFlag: 'usa.png'),
-    HandleTimeData(url: 'Asia/Seoul', locationName: 'Seoul', countryFlag: 'south_korea.png'),
-    HandleTimeData(url: 'Asia/Jakarta', locationName: 'Jakarta', countryFlag: 'indonesia.png'),
-  ];
-
+  List<HandleTimeData> locations = FakeLocations().fakeLocation();
 
   void updateTime(index) async{
     HandleTimeData handleTimeData = locations[index];
@@ -37,11 +29,11 @@ class _ChooseLocationState extends State<ChooseLocation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[850],
+      backgroundColor: Theme.of(context).textTheme.bodyText1.color,
       appBar: AppBar(
         title: Text("Choose Location"),
         centerTitle: true,
-        backgroundColor: Colors.blue[350],
+        backgroundColor: Theme.of(context).textTheme.bodyText2.color,
       ),
       body: ListView.builder(
         itemCount: locations.length,

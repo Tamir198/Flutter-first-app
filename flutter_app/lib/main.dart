@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'pages/home_screen.dart';
 import 'pages/loading_screen.dart';
 import 'pages/choose_location_screen.dart';
 
 //MaterialApp root widget to enable me blank screen + working with material design things
-void main() =>
-    runApp(MaterialApp(
+
+void main() {
+  //For debug
+  //debugPaintSizeEnabled = true;
+  runApp(MyMain());
+}
+
+class MyMain extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
@@ -13,19 +23,21 @@ void main() =>
           '/': (context) => LoadingScreen(),
           '/Home': (context) => Home(),
           '/Location': (context) => ChooseLocation()
-        }
-
-    ));
-
-class List extends StatefulWidget {
-  @override
-  _ListState createState() => _ListState();
-}
-
-class _ListState extends State<List> {
-  
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
+        },
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+          accentColor:  Colors.blue,
+          textTheme: TextTheme(
+            bodyText1: TextStyle(
+              color: Colors.black12,
+            ),
+            bodyText2: TextStyle(
+              color: Colors.blueGrey,
+            ),
+            //todo check how to save strings in here as colors
+          ),
+        ),
+    );
   }
 }
+
